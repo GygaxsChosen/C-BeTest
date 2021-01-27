@@ -11,7 +11,7 @@ namespace WebApplication1.DataBase
 {
     public class BaseDatabase<GenericObject>
     {
-        public static void UpdateOne(String collectionToHit, GenericObject newObject, string valueToUpdate)
+        public  void UpdateOne(String collectionToHit, GenericObject newObject, string valueToUpdate)
         {
             var client = new MongoClient("mongodb+srv://Jodeal:3g9nHaFa4n4ypd5T@freedb.s0mt1.mongodb.net/FreeDb?retryWrites=true&w=majority");
             var database = client.GetDatabase("FreeDB");
@@ -28,7 +28,7 @@ namespace WebApplication1.DataBase
             var newItemToUpdate = collection.UpdateOne(filter, update);
                 }
 
-        public static List<GenericObject> FindMany(string collectionToHit)
+        public  List<GenericObject> FindMany(string collectionToHit)
         {
             var client = new MongoClient("mongodb+srv://Jodeal:3g9nHaFa4n4ypd5T@freedb.s0mt1.mongodb.net/FreeDb?retryWrites=true&w=majority");
             var database = client.GetDatabase("FreeDB");
@@ -46,7 +46,7 @@ namespace WebApplication1.DataBase
             }
             return ParsedResults;
         }
-        public static void CreateOne(string collectionToHit, GenericObject newObject)
+        public  void CreateOne(string collectionToHit, GenericObject newObject)
         {
             MongoClient client = new MongoClient("mongodb+srv://Jodeal:3g9nHaFa4n4ypd5T@freedb.s0mt1.mongodb.net/FreeDb?retryWrites=true&w=majority");
             var database = client.GetDatabase("FreeDB");
@@ -55,7 +55,7 @@ namespace WebApplication1.DataBase
       
             collection.InsertOne(newObject);
         }
-        public static GenericObject UpdateAndReplaceOne(string collectionToHit, GenericObject newObject)
+        public  GenericObject UpdateAndReplaceOne(string collectionToHit, GenericObject newObject)
         {
             MongoClient client = new MongoClient("mongodb+srv://Jodeal:3g9nHaFa4n4ypd5T@freedb.s0mt1.mongodb.net/FreeDb?retryWrites=true&w=majority");
             var database = client.GetDatabase("FreeDB");
@@ -69,7 +69,7 @@ namespace WebApplication1.DataBase
 
         }
 
-        public static GenericObject FindOne(string collectionToHit, string Id)
+        public  GenericObject FindOne(string collectionToHit, string Id)
         {
             var client = new MongoClient("mongodb+srv://Jodeal:3g9nHaFa4n4ypd5T@freedb.s0mt1.mongodb.net/FreeDb?retryWrites=true&w=majority");
             var database = client.GetDatabase("FreeDB");
@@ -92,7 +92,7 @@ namespace WebApplication1.DataBase
 
 
         }
-        public static void DeleteOne(string CollectionToHit, GenericObject objectToDelete)
+        public  void DeleteOne(string CollectionToHit, GenericObject objectToDelete)
         {
             var client = new MongoClient("mongodb+srv://Jodeal:3g9nHaFa4n4ypd5T@freedb.s0mt1.mongodb.net/FreeDb?retryWrites=true&w=majority");
             var database = client.GetDatabase("FreeDB");

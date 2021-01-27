@@ -12,26 +12,25 @@ namespace WebApplication1.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class EmployeeDocumentationController : Controller
+    public class EmployeeDocumentationController : BaseController<DocumentationData>
     {
+        Logic.EmployeeLogic<DocumentationData> EmployeeLogic = new Logic.EmployeeLogic<DocumentationData>();
         [HttpPost]
         public DocumentationData UpdateOrCreateEmployeeDocumentation( DocumentationData data)
         {
-
-           DocumentationData returnObject = Logic.BaseLogic<DocumentationData>.UpdateOrCreateOne("EmployeeDocumentation", data, "DocumentationText");
-
-            return returnObject;
+            DocumentationData returnObject = EmployeeLogic.UpdateOrCreateOne("EmployeeDocumentation", data, "DocumentationText");
+             return returnObject;
         }
      
         [HttpGet("{RealId}")]
         public string LookupEmployeeDocumentationController(string RealId)
         {
-            DocumentationData Documentation = Logic.BaseLogic<DocumentationData>.FindOne("EmployeeDocumentation", RealId);
-
+            DocumentationData Documentation = FindOne("EmployeeDocumentation", RealId);
             string jsonString = JsonSerializer.Serialize(Documentation);
 
             return jsonString;
         }
+       
 
     }
 }
