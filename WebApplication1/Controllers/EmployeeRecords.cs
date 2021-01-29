@@ -12,20 +12,22 @@ namespace WebApplication1.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class PostEmployeeRecordsController : BaseController<Employee>
+    public class PostEmployeeRecordsController : Controller
     {
         Logic.EmployeeLogic<Employee> EmployeeLogic = new Logic.EmployeeLogic<Employee>();
 
         [HttpPost]
         public Employee PostNewEmployee([FromBody] Employee content)
         {
-            Employee someEmployee =  PostNewEntity("FreeCollection", content);
+
+            Employee someEmployee = EmployeeLogic.UpdateOrCreateOne("FreeCollection", content, "");
             return someEmployee;
         }
         [HttpDelete("{RealId}")]
         public void DeleteEmployeeRecord(string RealId)
         {
-            DeleteOneEntity("FreeCollection", RealId);
+            EmployeeLogic.DeleteOne("FreeCollection", RealId);
+          
         }
 
         [HttpPut]
@@ -37,7 +39,7 @@ namespace WebApplication1.Controllers
         [HttpGet]
         public string GetAllEmployees()
         {
-            List<Employee> mylist = FindMany("FreeCollection");
+            List<Employee> mylist = EmployeeLogic.FindMany("FreeCollection");
             string jsonString = JsonSerializer.Serialize(mylist);
             return jsonString;
 

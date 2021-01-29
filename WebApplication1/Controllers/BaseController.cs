@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WebApplication1.Controllers
 {
-    public class BaseController<GenricType> : Controller
+    public class BaseController<GenricType>
     {
         Logic.BaseLogic<GenricType> BaseLogic = new Logic.BaseLogic<GenricType>();
         public GenricType PostNewEntity(string CollectionToHit, GenricType content)
